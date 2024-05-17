@@ -2,12 +2,13 @@ import pandas as pd
 from src.previsores.previsores_escalonado import Previsores_escalonado
 from src.previsores.previsores2 import Previsores2
 from src.previsores.previsores3 import Previsores3
+from src.treino_e_teste.treino_e_teste import TreinoTeste
 
 # Configurar pandas para comportamento futuro
 pd.set_option('future.no_silent_downcasting', True)
 
 # lendo o arquivo csv
-df = pd.read_csv('./obesidadeData.csv',
+df = pd.read_csv('../../obesidadeData.csv',
                  sep=',', encoding='utf-8')
 
 # mostrando a tabela na tela com o print
@@ -87,3 +88,6 @@ previsores3df = pd.DataFrame(previsores3)
 previsores3_escalonado = Previsores_escalonado(previsores3)
 previsores3_escdf = pd.DataFrame(previsores3_escalonado)
 #print(previsores3_escdf)
+
+dados_treino_e_teste = TreinoTeste(previsores3_escalonado, alvo)
+print(dados_treino_e_teste)
