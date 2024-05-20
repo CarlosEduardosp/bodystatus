@@ -3,6 +3,8 @@ from src.previsores.previsores_escalonado import Previsores_escalonado
 from src.previsores.previsores2 import Previsores2
 from src.previsores.previsores3 import Previsores3
 from src.treino_e_teste.treino_e_teste import TreinoTeste
+from src.Algoritimos.NaiveBayes.naivebayes import Algoritimo_naiveBayes
+from src.Avaliar_algoritimo.testar_e_avaliar_algoritimo import testar_e_avaliar
 
 # Configurar pandas para comportamento futuro
 pd.set_option('future.no_silent_downcasting', True)
@@ -89,5 +91,20 @@ previsores3_escalonado = Previsores_escalonado(previsores3)
 previsores3_escdf = pd.DataFrame(previsores3_escalonado)
 #print(previsores3_escdf)
 
-dados_treino_e_teste = TreinoTeste(previsores3_escalonado, alvo)
-print(dados_treino_e_teste)
+# reunindo todos os previsores em uma lista.
+todos_os_previsores = [
+    {"id": "previsores", "previsores": previsores},
+    {"id": "previsores_esc", "previsores": previsores_escalonado},
+    {"id": "previsores2", "previsores": previsores2},
+    {"id": "previsores2_esc", "previsores": previsores2_escalonado},
+    {"id": "previsores3", "previsores": previsores3},
+    {"id": "previsores3_esc", "previsores": previsores3_escalonado},
+]
+
+# testando e avaliando com naive bayes
+testar_e_avaliar(todos_os_previsores, alvo, codigo_algoritimo=1)
+
+# testando e avaliando com SVM - Máquinas de Vetores de Suporte
+testar_e_avaliar(todos_os_previsores, alvo, codigo_algoritimo=2)
+
+
