@@ -107,4 +107,7 @@ testar_e_avaliar(todos_os_previsores, alvo, codigo_algoritimo=1)
 # testando e avaliando com SVM - Máquinas de Vetores de Suporte
 testar_e_avaliar(todos_os_previsores, alvo, codigo_algoritimo=2)
 
+# testando e avaliando com Regressão Logística
+testar_e_avaliar(todos_os_previsores, alvo, codigo_algoritimo=3)
+
 
