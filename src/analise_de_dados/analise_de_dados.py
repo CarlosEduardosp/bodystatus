@@ -2,8 +2,6 @@ import pandas as pd
 from src.previsores.previsores_escalonado import Previsores_escalonado
 from src.previsores.previsores2 import Previsores2
 from src.previsores.previsores3 import Previsores3
-from src.treino_e_teste.treino_e_teste import TreinoTeste
-from src.Algoritimos.NaiveBayes.naivebayes import Algoritimo_naiveBayes
 from src.Avaliar_algoritimo.testar_e_avaliar_algoritimo import testar_e_avaliar
 
 # Configurar pandas para comportamento futuro
@@ -32,6 +30,7 @@ valores_unicos = df['MTRANS'].unique()
 df2 = pd.DataFrame.copy(df)
 #print(df2)
 
+
 # tranformando as variaveis
 df2['Gender'] = df2['Gender'].replace({'Male': int(0), 'Female': int(1)}).astype(int)
 df2['CALC'] = df2['CALC'].replace({'no': 0, 'Sometimes': 1, 'Frequently': 2, 'Always': 3}).astype(int)
@@ -40,8 +39,11 @@ df2['SCC'] = df2['SCC'].replace({'no': 0, 'yes': 1}).astype(int)
 df2['SMOKE'] = df2['SMOKE'].replace({'no': 0, 'yes': 1}).astype(int)
 df2['family_history_with_overweight'] = df2['family_history_with_overweight'].replace({'no': 0, 'yes': 1}).astype(int)
 df2['CAEC'] = df2['CAEC'].replace({'no': 0, 'Sometimes': 1, 'Frequently': 2, 'Always': 3}).astype(int)
-df2['MTRANS'] = df2['MTRANS'].replace({'Walking': 0, 'Public_Transportation': 1, 'Bike': 2, 'Motorbike': 3, 'Automobile': 4}).astype(int)
-df2['NObeyesdad'] = df2['NObeyesdad'].replace({'Insufficient_Weight': 0, 'Normal_Weight': 1, 'Overweight_Level_I': 2, 'Overweight_Level_II': 3, 'Obesity_Type_I': 4, 'Obesity_Type_II': 5, 'Obesity_Type_III': 6}).astype(int)
+df2['MTRANS'] = df2['MTRANS'].replace(
+    {'Walking': 0, 'Public_Transportation': 1, 'Bike': 2, 'Motorbike': 3, 'Automobile': 4}).astype(int)
+df2['NObeyesdad'] = df2['NObeyesdad'].replace(
+    {'Insufficient_Weight': 0, 'Normal_Weight': 1, 'Overweight_Level_I': 2, 'Overweight_Level_II': 3,
+     'Obesity_Type_I': 4, 'Obesity_Type_II': 5, 'Obesity_Type_III': 6}).astype(int)
 #print(df2)
 
 #print(df2.dtypes)
@@ -72,7 +74,6 @@ previsores3 = conjunto de variáveis previsoras transformadas pelo labelencoder 
 previsores3_esc = conjunto de variáveis previsoras transformadas pelo labelencoder e onehotencoder escalonada.
 """
 
-
 previsores_escalonado = Previsores_escalonado(previsores)
 #print(previsores_escalonado)
 
@@ -102,12 +103,28 @@ todos_os_previsores = [
 ]
 
 # testando e avaliando com naive bayes
-testar_e_avaliar(todos_os_previsores, alvo, codigo_algoritimo=1)
+#testar_e_avaliar(todos_os_previsores, alvo, codigo_algoritimo=1)
 
 # testando e avaliando com SVM - Máquinas de Vetores de Suporte
-testar_e_avaliar(todos_os_previsores, alvo, codigo_algoritimo=2)
+#testar_e_avaliar(todos_os_previsores, alvo, codigo_algoritimo=2)
 
 # testando e avaliando com Regressão Logística
-testar_e_avaliar(todos_os_previsores, alvo, codigo_algoritimo=3)
+#testar_e_avaliar(todos_os_previsores, alvo, codigo_algoritimo=3)
 
+# testando e avaliando com KNN - aprendizagem baseada em instâncias
+#testar_e_avaliar(todos_os_previsores, alvo, codigo_algoritimo=4)
 
+# testando e avaliando com Árvore de Decisão
+#testar_e_avaliar(todos_os_previsores, alvo, codigo_algoritimo=5)
+
+# testando e avaliando com Random Forest
+#testar_e_avaliar(todos_os_previsores, alvo, codigo_algoritimo=6)
+
+# testando e avaliando com XGBoost
+#testar_e_avaliar(todos_os_previsores, alvo, codigo_algoritimo=7)
+
+# testando e avaliando com lightGbm
+#testar_e_avaliar(todos_os_previsores, alvo, codigo_algoritimo=8)
+
+# testando e avaliando com lightGbm
+testar_e_avaliar(todos_os_previsores, alvo, codigo_algoritimo=9)

@@ -18,7 +18,7 @@ def regressaoLogistica(dados_treino_e_teste: list):
     # treino do algoritimo
     logistica = make_pipeline(
         StandardScaler(),
-        LogisticRegression(random_state=1, max_iter=1000, penalty="l2", tol=0.0001, C=1, solver="lbfgs")
+        LogisticRegression(random_state=1, max_iter=500, penalty="l2", tol=0.0001, C=1, solver="lbfgs")
     )
     logistica.fit(x_treino, y_treino)
 
