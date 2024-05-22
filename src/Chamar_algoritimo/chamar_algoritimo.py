@@ -1,14 +1,15 @@
-from src.Avaliar_algoritimo.avaliar_naivebayes.avaliar_naivebayes import avaliarNaiveBayes
-from src.Avaliar_algoritimo.avaliar_svm.avaliar_svm import avaliarSvm
-from src.Avaliar_algoritimo.avaliar_regressaoLogistica.avaliar_regressaoLogistica import avaliarRegressaoLogistica
-from src.Avaliar_algoritimo.avaliar_KNN.avaliar_KNN import avaliarKnn
-from src.Avaliar_algoritimo.avaliar_arvorededecisao.avaliar_arvoredeDecisao import avaliarArvoredeDecisao
-from src.Avaliar_algoritimo.avaliar_randomForest.avalizar_randomForest import avaliarRandomForest
-from src.Avaliar_algoritimo.avaliar_xgboost.avaliar_xgboost import avaliarXGBoost
-from src.Avaliar_algoritimo.avaliar_lightgbm.avaliar_lightgbm import avaliarLightGBM
-from src.Avaliar_algoritimo.Catboost.avaliar_catboost import avaliarCatBoost
+from src.Algoritimos.NaiveBayes.naivebayes import avaliarNaiveBayes
+from src.Algoritimos.MaquinadeVetoresdeSuporte.SVM import avaliarSvm
+from src.Algoritimos.RegressaoLogistica.regressao_logistica import avaliarRegressaoLogistica
+from src.Algoritimos.Aprendizagem_Baseada_Instancia_KNN.knn import AlgoritimoKnn
+from src.Algoritimos.ArvoredeDecisao.ArvoredeDecisao import avaliarArvoredeDecisao
+from src.Algoritimos.RandomForest.RandomForest import avaliarRandomForest
+from src.Algoritimos.XGboost.XGboost import avaliarXGBoost
+from src.Algoritimos.LightGBM.LightGbm import avaliarLightGBM
+from src.Algoritimos.CATBOOST.catboost import avaliarCatBoost
 
-def testar_e_avaliar(todos_os_previsores: list, alvo: list, codigo_algoritimo: int):
+
+def chamarAlgoritimo(todos_os_previsores: list, alvo: list, codigo_algoritimo: int):
     """
     :param todos_os_previsores:
     :param alvo:
@@ -30,7 +31,10 @@ def testar_e_avaliar(todos_os_previsores: list, alvo: list, codigo_algoritimo: i
 
     elif codigo_algoritimo == 4:  # Aprendizagem baseada em instâncias
 
-        avaliarKnn(todos_os_previsores, alvo)
+        # instanciando a classe AlgoritimoKnn
+        knn = AlgoritimoKnn()
+        # chamando o metodo Avaliar e validação cruzada.
+        knn.avaliar_e_validacao_cruzada(todos_os_previsores, alvo)
 
     elif codigo_algoritimo == 5:  # Árvore de Decisão
 

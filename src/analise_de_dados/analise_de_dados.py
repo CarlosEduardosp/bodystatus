@@ -1,15 +1,16 @@
 import pandas as pd
+import numpy as np
 from src.previsores.previsores_escalonado import Previsores_escalonado
 from src.previsores.previsores2 import Previsores2
 from src.previsores.previsores3 import Previsores3
-from src.Avaliar_algoritimo.testar_e_avaliar_algoritimo import testar_e_avaliar
+from src.Chamar_algoritimo.chamar_algoritimo import chamarAlgoritimo
 
 # Configurar pandas para comportamento futuro
 pd.set_option('future.no_silent_downcasting', True)
 
 # lendo o arquivo csv
 df = pd.read_csv('../../obesidadeData.csv',
-                 sep=',', encoding='utf-8')
+                     sep=',', encoding='utf-8')
 
 # mostrando a tabela na tela com o print
 #print(df.shape)
@@ -102,29 +103,32 @@ todos_os_previsores = [
     {"id": "previsores3_esc", "previsores": previsores3_escalonado},
 ]
 
+np.savetxt('../../previsores.csv', previsores, delimiter=',')
+np.savetxt('../../alvo.csv', alvo, delimiter=',')
+
 # testando e avaliando com naive bayes
-#testar_e_avaliar(todos_os_previsores, alvo, codigo_algoritimo=1)
+#chamarAlgoritimo(todos_os_previsores, alvo, codigo_algoritimo=1)
 
 # testando e avaliando com SVM - Máquinas de Vetores de Suporte
-#testar_e_avaliar(todos_os_previsores, alvo, codigo_algoritimo=2)
+chamarAlgoritimo(todos_os_previsores, alvo, codigo_algoritimo=2)
 
 # testando e avaliando com Regressão Logística
-#testar_e_avaliar(todos_os_previsores, alvo, codigo_algoritimo=3)
+#chamarAlgoritimo(todos_os_previsores, alvo, codigo_algoritimo=3)
 
 # testando e avaliando com KNN - aprendizagem baseada em instâncias
-#testar_e_avaliar(todos_os_previsores, alvo, codigo_algoritimo=4)
+#chamarAlgoritimo(todos_os_previsores, alvo, codigo_algoritimo=4)
 
 # testando e avaliando com Árvore de Decisão
-#testar_e_avaliar(todos_os_previsores, alvo, codigo_algoritimo=5)
+#chamarAlgoritimo(todos_os_previsores, alvo, codigo_algoritimo=5)
 
 # testando e avaliando com Random Forest
-#testar_e_avaliar(todos_os_previsores, alvo, codigo_algoritimo=6)
+#chamarAlgoritimo(todos_os_previsores, alvo, codigo_algoritimo=6)
 
 # testando e avaliando com XGBoost
-#testar_e_avaliar(todos_os_previsores, alvo, codigo_algoritimo=7)
+#chamarAlgoritimo(todos_os_previsores, alvo, codigo_algoritimo=7)
 
 # testando e avaliando com lightGbm
-#testar_e_avaliar(todos_os_previsores, alvo, codigo_algoritimo=8)
+#chamarAlgoritimo(todos_os_previsores, alvo, codigo_algoritimo=8)
 
-# testando e avaliando com lightGbm
-testar_e_avaliar(todos_os_previsores, alvo, codigo_algoritimo=9)
+# testando e avaliando com Catboost
+#chamarAlgoritimo(todos_os_previsores, alvo, codigo_algoritimo=9)
