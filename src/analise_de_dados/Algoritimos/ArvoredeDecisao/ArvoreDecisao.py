@@ -2,47 +2,46 @@ from sklearn.metrics import accuracy_score, confusion_matrix
 from sklearn.model_selection import KFold, cross_val_score
 from sklearn.preprocessing import StandardScaler
 from sklearn.pipeline import make_pipeline
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.model_selection import train_test_split
 from src.analise_de_dados.interfaces.InterfaceAlgoritimo.interfaceAlgoritimo import AlgoritimoInterface
 from sklearn.tree import DecisionTreeClassifier
-from catboost import CatBoostClassifier
 
 
-class AlgoritimoCatBoost(AlgoritimoInterface):
+class AlgoritimoArvoreDecisao(AlgoritimoInterface):
 
     def avaliar_e_validacao_cruzada(self, todos_os_previsores: list, alvo: list):
         self.todos_os_previsores = todos_os_previsores
         self.alvo = alvo
 
         print('----------------------------------------------')
-        print('Testando e Avaliando CatBoost: ')
+        print('Testando e Avaliando Árvore de Decisão: ')
         print('----------------------------------------------')
 
         # dados de treino de todos os previsores de uma vez.
-        for i in self.todos_os_previsores:
+        for i in todos_os_previsores:
             print(f'Teste com {i['id']}')
 
             dados_treino_e_teste = self._separando_dados_para_treino_e_teste(i['previsores'], alvo)
             # print(dados_treino_e_teste)
 
-            # aplicando o algoritimo XGboost.
+            # aplicando o algoritimo Aprendizagem baseada em instâncias.
             response = self._treinando_e_testando(dados_treino_e_teste)
 
             # validação cruzada
 
             # Separando os dados em folds
-            kfold = KFold(n_splits=2, shuffle=True, random_state=5)
+            kfold = KFold(n_splits=30, shuffle=True, random_state=5)
 
             # Criando o modelo
             modelo = make_pipeline(
                 StandardScaler(),
-                CatBoostClassifier(task_type='CPU', iterations=100, learning_rate=0.1, depth=8, random_state=5,
-                                   eval_metric="Accuracy")
+                KNeighborsClassifier(n_neighbors=7, metric='minkowski', p=1)
             )
             resultado = cross_val_score(modelo, i['previsores'], alvo, cv=kfold)
 
             # Usamos a média e o desvio padrão
-            print(f"Validação Cruzada, Acurácia Média: {resultado.mean() * 100.0:.2f}")
+            print(f"Validação Cruzada, Acurácia Média: {resultado.mean() * 100.0}")
 
 
     def _treinando_e_testando(self, dados_treino_e_teste: list):

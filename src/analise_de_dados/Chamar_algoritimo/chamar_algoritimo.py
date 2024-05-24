@@ -1,12 +1,12 @@
-from src.analise_de_dados.Algoritimos import avaliarNaiveBayes
-from src.analise_de_dados.Algoritimos import avaliarSvm
-from src.analise_de_dados.Algoritimos.RegressaoLogistica import avaliarRegressaoLogistica
-from src.analise_de_dados.Algoritimos.Aprendizagem_Baseada_Instancia_KNN import AlgoritimoKnn
-from src.analise_de_dados.Algoritimos import avaliarArvoredeDecisao
-from src.analise_de_dados.Algoritimos.RandomForest import avaliarRandomForest
-from src.analise_de_dados.Algoritimos import avaliarXGBoost
+from src.analise_de_dados.Algoritimos.NaiveBayes.naivebayes import avaliarNaiveBayes
+from src.analise_de_dados.Algoritimos.MaquinadeVetoresdeSuporte.SVM import avaliarSvm
+from src.analise_de_dados.Algoritimos.RegressaoLogistica.regressao_logistica import avaliarRegressaoLogistica
+from src.analise_de_dados.Algoritimos.Aprendizagem_Baseada_Instancia_KNN.knn import AlgoritimoKnn
+from src.analise_de_dados.Algoritimos.ArvoredeDecisao.ArvoreDecisao import AlgoritimoArvoreDecisao
+from src.analise_de_dados.Algoritimos.RandomForest.RandomForest import avaliarRandomForest
+from src.analise_de_dados.Algoritimos.XGboost.XGboost import avaliarXGBoost
 from src.analise_de_dados.Algoritimos.LightGBM.LightGbm import avaliarLightGBM
-from src.analise_de_dados.Algoritimos.CATBOOST.catboost import avaliarCatBoost
+from src.analise_de_dados.Algoritimos.CATBOOST.catboost import AlgoritimoCatBoost
 
 
 def chamarAlgoritimo(todos_os_previsores: list, alvo: list, codigo_algoritimo: int):
@@ -38,7 +38,10 @@ def chamarAlgoritimo(todos_os_previsores: list, alvo: list, codigo_algoritimo: i
 
     elif codigo_algoritimo == 5:  # Árvore de Decisão
 
-        avaliarArvoredeDecisao(todos_os_previsores, alvo)
+        # instanciando a classe AlgoritimoArvoreDecisao
+        arvore = AlgoritimoArvoreDecisao()
+        # chamando o metodo Avaliar e validação cruzada.
+        arvore.avaliar_e_validacao_cruzada(todos_os_previsores, alvo)
 
     elif codigo_algoritimo == 6:  # Random Forest
 
@@ -54,4 +57,7 @@ def chamarAlgoritimo(todos_os_previsores: list, alvo: list, codigo_algoritimo: i
 
     elif codigo_algoritimo == 9:  # catboost
 
-        avaliarCatBoost(todos_os_previsores, alvo)
+        # instanciando a classe AlgoritimoArvoreDecisao
+        cat = AlgoritimoCatBoost()
+        # chamando o metodo Avaliar e validação cruzada.
+        cat.avaliar_e_validacao_cruzada(todos_os_previsores, alvo)

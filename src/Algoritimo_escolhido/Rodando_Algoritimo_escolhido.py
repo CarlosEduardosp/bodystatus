@@ -5,7 +5,8 @@ from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 from src.model.model_pessoa import Pessoa
 from typing import Type, List
-
+from src.analise_de_dados.previsores.previsores2 import Previsores2
+from src.analise_de_dados.previsores.previsores_escalonado import Previsores_escalonado
 
 def rodar_Algoritimo_escolhido(pessoa: Type[Pessoa]) -> List:
 
@@ -16,6 +17,9 @@ def rodar_Algoritimo_escolhido(pessoa: Type[Pessoa]) -> List:
     alvo = pd.read_csv('../../alvo.csv', sep=',', encoding='utf-8', header=None)
     previsores = pd.read_csv('../../previsores.csv', sep=',', encoding='utf-8', header=None)
 
+    previsores2 = Previsores2(previsores)
+    previsores_esc = Previsores_escalonado(previsores)
+
     # Convertendo 'alvo' para um array 1D se necessário
     if alvo.shape[1] == 1:  # Verifica se alvo tem apenas uma coluna
         alvo = alvo.values.ravel()  # Transforma em um array 1D
@@ -25,7 +29,7 @@ def rodar_Algoritimo_escolhido(pessoa: Type[Pessoa]) -> List:
     # treino do algoritimo
     logistica = make_pipeline(
         StandardScaler(),
-        LogisticRegression(random_state=1, max_iter=500, penalty="l2", tol=0.0001, C=1, solver="lbfgs")
+        LogisticRegression(random_state=1, max_iter=500, penalty="l2", tol=0.0001, C=5, solver="lbfgs")
     )
     logistica.fit(previsores, alvo)
 

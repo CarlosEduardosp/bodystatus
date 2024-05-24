@@ -1,9 +1,9 @@
 import pandas as pd
 import numpy as np
-from src.analise_de_dados.previsores import Previsores_escalonado
-from src.analise_de_dados.previsores import Previsores2
+from src.analise_de_dados.previsores.previsores_escalonado import Previsores_escalonado
+from src.analise_de_dados.previsores.previsores2 import Previsores2
 from src.analise_de_dados.previsores.previsores3 import Previsores3
-from src.analise_de_dados.Chamar_algoritimo import chamarAlgoritimo
+from src.analise_de_dados.Chamar_algoritimo.chamar_algoritimo import chamarAlgoritimo
 
 # Configurar pandas para comportamento futuro
 pd.set_option('future.no_silent_downcasting', True)
