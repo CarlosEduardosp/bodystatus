@@ -103,8 +103,9 @@ todos_os_previsores = [
     {"id": "previsores3_esc", "previsores": previsores3_escalonado},
 ]
 
-np.savetxt('../../previsores.csv', previsores, delimiter=',')
-np.savetxt('../../alvo.csv', alvo, delimiter=',')
+#salvando os arquivos no diretório designado.
+#np.savetxt('/src/dados_csv/previsores.csv', previsores, delimiter=',')
+#np.savetxt('/src/dados_csv/alvo.csv', alvo, delimiter=',')
 
 # testando e avaliando com naive bayes
 #chamarAlgoritimo(todos_os_previsores, alvo, codigo_algoritimo=1)

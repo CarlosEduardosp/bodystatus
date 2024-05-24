@@ -1,8 +1,18 @@
-from src.model.model_pessoa import Pessoa
-from src.Algoritimo_escolhido.Rodando_Algoritimo_escolhido import rodar_Algoritimo_escolhido
+from src.desenvolvimento.model.model_pessoa import Pessoa
+from src.desenvolvimento.Algoritimo_escolhido.Rodando_Algoritimo_escolhido import rodar_Algoritimo_escolhido
+from fastapi import APIRouter
 
-pessoa = Pessoa(
-        nome='Natali',
+router = APIRouter()
+
+
+@router.get('/inserir_dados')
+def Inserir_dados():
+    """
+    :return: Inserir dados para análise.
+    """
+
+    pessoa = Pessoa(
+        nome='Kadu',
         idade=34,
         genero=1,
         altura=1.65,
@@ -21,6 +31,6 @@ pessoa = Pessoa(
         qual_transporte_costuma_usar=4
     )
 
-resultado = rodar_Algoritimo_escolhido(pessoa)
+    resultado = rodar_Algoritimo_escolhido(pessoa)
 
-print(f'Olá {pessoa.exibir_nome()}, {pessoa.exibir_resultado(resultado)}')
+    return f'Olá {pessoa.exibir_nome()}, {pessoa.exibir_resultado(resultado)}'

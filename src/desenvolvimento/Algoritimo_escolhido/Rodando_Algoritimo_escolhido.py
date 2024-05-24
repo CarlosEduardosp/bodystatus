@@ -3,10 +3,11 @@ import numpy as np
 from sklearn.linear_model import LogisticRegression
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
-from src.model.model_pessoa import Pessoa
+from src.desenvolvimento.model.model_pessoa import Pessoa
 from typing import Type, List
 from src.analise_de_dados.previsores.previsores2 import Previsores2
 from src.analise_de_dados.previsores.previsores_escalonado import Previsores_escalonado
+
 
 def rodar_Algoritimo_escolhido(pessoa: Type[Pessoa]) -> List:
 
@@ -14,8 +15,8 @@ def rodar_Algoritimo_escolhido(pessoa: Type[Pessoa]) -> List:
     pd.set_option('future.no_silent_downcasting', True)
 
     # Lendo o arquivo csv
-    alvo = pd.read_csv('../../alvo.csv', sep=',', encoding='utf-8', header=None)
-    previsores = pd.read_csv('../../previsores.csv', sep=',', encoding='utf-8', header=None)
+    alvo = pd.read_csv('src/desenvolvimento/dados_csv/alvo.csv', sep=',', encoding='utf-8', header=None)
+    previsores = pd.read_csv('src/desenvolvimento/dados_csv/previsores.csv', sep=',', encoding='utf-8', header=None)
 
     previsores2 = Previsores2(previsores)
     previsores_esc = Previsores_escalonado(previsores)
