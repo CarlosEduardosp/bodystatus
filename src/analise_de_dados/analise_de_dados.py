@@ -1,9 +1,9 @@
 import pandas as pd
 import numpy as np
-from src.previsores.previsores_escalonado import Previsores_escalonado
-from src.previsores.previsores2 import Previsores2
-from src.previsores.previsores3 import Previsores3
-from src.Chamar_algoritimo.chamar_algoritimo import chamarAlgoritimo
+from src.analise_de_dados.previsores import Previsores_escalonado
+from src.analise_de_dados.previsores import Previsores2
+from src.analise_de_dados.previsores.previsores3 import Previsores3
+from src.analise_de_dados.Chamar_algoritimo import chamarAlgoritimo
 
 # Configurar pandas para comportamento futuro
 pd.set_option('future.no_silent_downcasting', True)
@@ -19,7 +19,7 @@ df = pd.read_csv('../../obesidadeData.csv',
 # print(df.shape)
 
 # mostra os tipos dos valores dentro de cada celula.
-# print(df.dtypes)
+#print(df.dtypes)
 
 
 # descobrir valores que aparecem pelo menos uma vez na coluna, parametro é o nome da coluna.
@@ -110,10 +110,10 @@ np.savetxt('../../alvo.csv', alvo, delimiter=',')
 #chamarAlgoritimo(todos_os_previsores, alvo, codigo_algoritimo=1)
 
 # testando e avaliando com SVM - Máquinas de Vetores de Suporte
-chamarAlgoritimo(todos_os_previsores, alvo, codigo_algoritimo=2)
+#chamarAlgoritimo(todos_os_previsores, alvo, codigo_algoritimo=2)
 
 # testando e avaliando com Regressão Logística
-#chamarAlgoritimo(todos_os_previsores, alvo, codigo_algoritimo=3)
+chamarAlgoritimo(todos_os_previsores, alvo, codigo_algoritimo=3)
 
 # testando e avaliando com KNN - aprendizagem baseada em instâncias
 #chamarAlgoritimo(todos_os_previsores, alvo, codigo_algoritimo=4)
