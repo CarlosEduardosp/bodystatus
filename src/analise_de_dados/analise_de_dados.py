@@ -8,6 +8,10 @@ from src.analise_de_dados.Chamar_algoritimo.chamar_algoritimo import chamarAlgor
 # Configurar pandas para comportamento futuro
 pd.set_option('future.no_silent_downcasting', True)
 
+# Ajustar a largura máxima de exibição
+pd.set_option('display.max_columns', None)
+pd.set_option('display.width', 1000)
+
 # lendo o arquivo csv
 df = pd.read_csv('../../obesidadeData.csv',
                      sep=',', encoding='utf-8')
@@ -29,7 +33,7 @@ valores_unicos = df['MTRANS'].unique()
 # Transformando as variáveis categóricas nominais em variáveis categóricas ordinais
 # criando um dataframe
 df2 = pd.DataFrame.copy(df)
-#print(df2)
+print(df2.head(10))
 
 
 # tranformando as variaveis
@@ -45,7 +49,7 @@ df2['MTRANS'] = df2['MTRANS'].replace(
 df2['NObeyesdad'] = df2['NObeyesdad'].replace(
     {'Insufficient_Weight': 0, 'Normal_Weight': 1, 'Overweight_Level_I': 2, 'Overweight_Level_II': 3,
      'Obesity_Type_I': 4, 'Obesity_Type_II': 5, 'Obesity_Type_III': 6}).astype(int)
-#print(df2)
+print(df2.head(55))
 
 #print(df2.dtypes)
 
@@ -114,7 +118,7 @@ todos_os_previsores = [
 #chamarAlgoritimo(todos_os_previsores, alvo, codigo_algoritimo=2)
 
 # testando e avaliando com Regressão Logística
-chamarAlgoritimo(todos_os_previsores, alvo, codigo_algoritimo=3)
+#chamarAlgoritimo(todos_os_previsores, alvo, codigo_algoritimo=3)
 
 # testando e avaliando com KNN - aprendizagem baseada em instâncias
 #chamarAlgoritimo(todos_os_previsores, alvo, codigo_algoritimo=4)
